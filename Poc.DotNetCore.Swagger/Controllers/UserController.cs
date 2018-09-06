@@ -13,33 +13,11 @@ namespace Poc.DotNetCore.Swagger.Controllers
         /// <summary>
         /// Obter todos os usuários.        
         /// </summary> 
-        /// <remarks>
-        /// Exemplos de retorno:
-        /// 
-        ///     Status Code: 200
-        /// 
-        ///     [
-        ///         {
-        ///             "id": "caef4812-598e-4473-8efc-b338af69a18f",
-        ///             "name": "João Pedro Hudinik",
-        ///             "email": "hudinik@outlook.com"
-        ///         },
-        ///         {
-        ///             "id": "b88dccaf-a3a2-436f-8b09-27f0e1f73321",
-        ///             "name": "José",
-        ///             "email": "jose@outlook.com"
-        ///         }        
-        ///     ]  
-        /// 
-        ///     Status Code: 500
-        ///     
-        ///     null
-        /// 
-        /// </remarks>       
+        /// <remarks>       
         /// <response code="200">A lista de usuários foi obtida com sucesso.</response>
         /// <response code="500">Ocorreu um erro ao obter a lista de usuários.</response>
         [HttpGet]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(List<User>), 200)]
         [ProducesResponseType(500)]
         public ActionResult<List<User>> Get()
         {
@@ -60,27 +38,13 @@ namespace Poc.DotNetCore.Swagger.Controllers
 
         /// <summary>
         /// Obter um usuário específico por ID.
-        /// </summary>
-        /// <remarks>
-        /// Exemplos de retorno:
-        /// 
-        ///     Status Code: 200
-        ///         
-        ///     {
-        ///         "id": "caef4812-598e-4473-8efc-b338af69a18f",
-        ///         "name": "João Pedro Hudinik",
-        ///         "email": "hudinik@outlook.com"
-        ///     }        
-        /// 
-        ///     Os demais status retornam nulo.
-        ///     
-        /// </remarks>       
+        /// </summary>    
         /// <param name="id">ID do usuário.</param>        
         /// <response code="200">O usuário foi obtido com sucesso.</response>                
         /// <response code="404">Não foi encontrado usuário com ID especificado.</response>
         /// <response code="500">Ocorreu um erro ao obter o usuário.</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(User), 200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public ActionResult<User> Get(Guid id)
@@ -109,16 +73,7 @@ namespace Poc.DotNetCore.Swagger.Controllers
 
         /// <summary>
         /// Cadastrar usuário.
-        /// </summary>
-        /// <remarks>
-        /// Exemplo de request:
-        ///       
-        ///     {        
-        ///        "Name": "João",
-        ///        "Email": "hudinik@outlook.com"
-        ///     }                
-        ///     
-        /// </remarks>
+        /// </summary>        
         /// <param name="user">Modelo do usuário.</param>
         /// <response code="200">O usuário foi cadastrado com sucesso.</response>        
         /// <response code="400">O modelo do usuário enviado é inválido.</response>
@@ -145,16 +100,7 @@ namespace Poc.DotNetCore.Swagger.Controllers
         /// <summary>
         /// Alterar usuário.
         /// </summary> 
-        /// <remarks>
-        /// Exemplo de request:
-        ///       
-        ///     {  
-        ///        "Id": "CAEF4812-598E-4473-8EFC-B338AF69A18F",
-        ///        "Name": "João",
-        ///        "Email": "hudinik@outlook.com"
-        ///     }
-        ///        
-        /// </remarks>        
+        /// <remarks>        
         /// <param name="user">Modelo do usuário.</param>
         /// <response code="200">O usuário foi alterado com sucesso.</response>        
         /// <response code="400">O modelo do usuário enviado é inválido.</response>
